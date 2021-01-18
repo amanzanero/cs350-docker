@@ -2,7 +2,9 @@ version: '3'
 
 services:
   gdbserver:
-    image: camerondurham/xv6-docker:latest
+    image: camerondurham/xv6-docker
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
     security_opt:
       - seccomp:unconfined
     privileged: true
@@ -12,6 +14,7 @@ services:
       - "7777:7777"
       - "25000:25000"
     volumes:
-        - ${work}:/xv6_docker/
+        - ./data:/xv6_docker/
     working_dir: /xv6_docker/
     hostname: xv6_host
+
